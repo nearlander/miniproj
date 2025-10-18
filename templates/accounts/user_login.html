@@ -1,45 +1,67 @@
 {% extends 'core/base.html' %}
 
-{% block head_title %}Banking System{% endblock %}
+{% block head_title %}Sign In{% endblock %}
 
 {% block content %}
-{% if form.non_field_errors %}
-    {% for error in form.non_field_errors %}
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
-            <p class="font-bold">Error!</p>
-            <p class="block sm:inline">{{ error }}</p>
-        </div>
-    {% endfor %}
-{% endif %}
-<h1 class="font-mono font-bold text-3xl text-center pb-5 pt-10">Sign In</h1>
-<hr>
-<div class="w-full mt-10">
-    <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        {% csrf_token %}
-        {% for hidden_field in form.hidden_fields %}
-            {{ hidden_field.errors }}
-            {{ hidden_field }}
-        {% endfor %}
-        {% for field in form.visible_fields %}
-        <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
-                {{ field.label }}
-            </label>
-            <input class="shadow appearance-none border border-gray-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="{{ field.name }}" id="{{ field.id_for_label }}" type="{{ field.widget_type }}">
-        </div>
-            {% if field.errors %}
-                {% for error in field.errors %}
-                <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
+<div class="flex h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-600 to-purple-800">
 
-        <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Sign In
-            </button>
+    <div class="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-2xl">
+        <div>
+            <h1 class="mt-2 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h1>
         </div>
-    </form>
+
+        {% if form.non_field_errors %}
+            <div class="rounded-md bg-red-50 p-4">
+                <div class="flex">
+                    <div class="ml-3">
+                        {% for error in form.non_field_errors %}
+                        <p class="text-sm font-medium text-red-800">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <form class="mt-8 space-y-6" method="POST">
+            {% csrf_token %}
+            <div class="-space-y-px rounded-md shadow-sm">
+                {% for field in form.visible_fields %}
+                    <div>
+                        <label for="{{ field.id_for_label }}" class="sr-only">{{ field.label }}</label>
+                        <input
+                            name="{{ field.name }}"
+                            type="{{ field.widget_type }}"
+                            id="{{ field.id_for_label }}"
+                            class="relative block w-full appearance-none border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm
+                            {% if forloop.first %}rounded-t-md{% endif %}
+                            {% if forloop.last %}rounded-b-md{% else %}border-b-0{% endif %}"
+                            placeholder="{{ field.label }}">
+                    </div>
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                        <p class="text-red-600 text-sm italic pt-1 pl-1">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div>
+                <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Sign In
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <p class="text-sm text-gray-600">
+                Don't have an account?
+                <a href="{% url 'accounts:user_registration' %}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    Register
+                </a>
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
+{% block footer %}{% endblock %}

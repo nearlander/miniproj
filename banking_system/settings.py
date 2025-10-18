@@ -40,9 +40,9 @@ INSTALLED_APPS = [
 
     'django_celery_beat',
 
-    'accounts',
-    'core',
-    'transactions',
+    'accounts.apps.AccountsConfig',
+    'core.apps.CoreConfig',
+    'transactions.apps.TransactionsConfig',
 ]
 
 MIDDLEWARE = [

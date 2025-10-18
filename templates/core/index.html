@@ -1,24 +1,33 @@
 {% extends 'core/base.html' %}
 
-{% block head_title %}Banking System{% endblock %}
+{% block head_title %}Welcome to the Banking System{% endblock %}
 
 {% block content %}
-    <div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
-        <!--Left Col-->
-        <div class="flex flex-col w-full lg:w-1/2 justify-center items-start pt-12 pb-24 px-6">
-            <h1 class="font-bold text-4xl my-4">Banking System</h1>
-            <p class="leading-normal mb-4">
-                This is an Example web application created using django.
-                You can find the sourse code on <a href="https://github.com/saadmk11/banking-system">GitHub</a>
-            </p>
-            <div>
-            <a href="{% url 'accounts:user_registration' %}" class="bg-transparent hover:bg-gray-800 text-gray-800 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent">Register</a>
-            <a href="https://github.com/saadmk11/banking-system" class="bg-transparent hover:bg-gray-800 text-gray-800 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-gray-900 hover:border-transparent">GitHub</a>
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="py-24 px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="w-20 h-20 mx-auto text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8l3 5m0 0l3-5m-3 5v4m-3-5h6m-6 3h6m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
             </div>
-        </div>
-        <!--Right Col-->
-        <div class="w-full lg:w-1/2 lg:py-6 text-center">
-            <h1 style="font-size: 12rem" class="font-black text-gray-800">$$$</h1>
+            
+            <h1 class="mt-6 text-4xl font-extrabold text-gray-900 sm:text-5xl">
+                A Simple and Modern Security Solution
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                This is a banking application protected by three-factor authentication: using advanced Machine Learning models!
+            </p>
+            
+            <div class="mt-10 flex justify-center space-x-4">
+                <a href="{% url 'accounts:user_registration' %}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Get Started
+                </a>
+                <a href="https://github.com/suranakhushi/miniproj" target="_blank" class="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    View on GitHub
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}
